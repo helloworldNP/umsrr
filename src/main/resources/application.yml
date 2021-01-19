@@ -1,0 +1,30 @@
+server:
+  port: 8888
+
+#数据库地址
+datasource:
+  url: localhost:3306/eesy
+
+spring:
+  #数据库配置
+  datasource:
+    hikari:
+      # 最大连接池数
+      maximum-pool-size: 100
+      #存活时间
+      max-lifetime: 1800000
+    username: root
+    password: 123456
+    url: jdbc:mysql://${datasource.url}?allowMultiQueries=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis:
+  # 指定别名设置的包为所有entity
+  type-aliases-package: com.nchu.countryside.domain.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 驼峰命名规范
+    map-underscore-to-camel-case: true
+  mapper-locations: # mapper映射文件位置
+    - classpath:com/nuch/countryside/dao/*.xml
